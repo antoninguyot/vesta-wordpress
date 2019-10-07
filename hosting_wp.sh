@@ -13,7 +13,7 @@ if [ ! -f "$WP_FILES"/wordpress.zip ]; then
 fi
 
 if [ ! -f "$WP_FILES"/woocommerce.zip ]; then
-	wget -O "$WP_FILES"/woocommerce.zip https://github.com/woocommerce/woocommerce/archive/3.6.4.zip
+	wget -O "$WP_FILES"/woocommerce.zip https://github.com/woocommerce/woocommerce/archive/3.7.0.zip
 fi
 
 if [ ! -f "$WP_FILES"/assistant.zip ]; then
