@@ -1,9 +1,7 @@
 #!/bin/bash
 
 USER="$1"
-DOMAIN="$2"
 DB_NAME="wp"
-
 WP_FILES="/tmp/wp"
 WP_PATH="$5"
 
