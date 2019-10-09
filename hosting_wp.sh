@@ -1,12 +1,15 @@
 #!/bin/bash
+
 USER="$1"
 DOMAIN="$2"
 DB_NAME="wp"
 
-WP_FILES="/var/wp"
+WP_FILES="/tmp/wp"
 WP_PATH="$5"
 
-DB_PASSWORD="$(cat $WP_FILES/.dbpass)"
+DB_PASSWORD="$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13)"
+
+mkdir -p "$WP_FILES"
 
 if [ ! -f "$WP_FILES"/wordpress.zip ]; then
 	wget -O "$WP_FILES"/wordpress.zip https://wordpress.org/latest.zip
@@ -24,12 +27,15 @@ cp "$WP_FILES"/wordpress.zip "$WP_PATH/" || exit 1
 
 cd "$WP_PATH" || exit 1
 
-rm index.php
+rm -f index.html
 
 unzip -q wordpress.zip
 
 mv wordpress/* .
-rmdir wordpress
+rmdir --ignore-fail-on-non-empty wordpress
+
+# DB creation
+/usr/local/vesta/bin/v-add-database "$USER" "$DB_NAME" "wp" "$DB_PASSWORD"
 
 echo "<?php
 define('DB_NAME', '${USER}_${DB_NAME}');
@@ -48,10 +54,10 @@ require_once(ABSPATH . 'wp-settings.php');" > wp-config.php
 
 cd wp-content/plugins || exit
 
-cp "$WP_FILES"/woocommerce.zip . || exit 1
-cp "$WP_FILES"/assistant.zip . || exit 1
+cp -f "$WP_FILES"/woocommerce.zip . || exit 1
+cp -f "$WP_FILES"/assistant.zip . || exit 1
 
 unzip -q woocommerce.zip
-rm woocommerce.zip
+rm -f woocommerce.zip
 unzip -q assistant.zip
-rm assistant.zip
+rm -f assistant.zip
