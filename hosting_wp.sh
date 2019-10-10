@@ -55,3 +55,5 @@ cp -f "$WP_FILES"/woocommerce.zip . || exit 1
 
 unzip -q woocommerce.zip
 rm -f woocommerce.zip
+
+chown -R "$USER":"$USER" ./*
