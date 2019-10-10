@@ -14,7 +14,7 @@ if [ ! -f "$WP_FILES"/wordpress.zip ]; then
 fi
 
 if [ ! -f "$WP_FILES"/woocommerce.zip ]; then
-	wget -O "$WP_FILES"/woocommerce.zip https://github.com/woocommerce/woocommerce/archive/3.7.0.zip
+	wget -O "$WP_FILES"/woocommerce.zip https://github.com/woocommerce/woocommerce/archive/3.7.1.zip
 fi
 
 if [ ! -f "$WP_FILES"/assistant.zip ]; then
@@ -48,7 +48,10 @@ $(curl https://api.wordpress.org/secret-key/1.1/salt/)
 
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
-require_once(ABSPATH . 'wp-settings.php');" > wp-config.php
+require_once(ABSPATH . 'wp-settings.php');
+require_once(ABSPATH . 'ateros-config.php');" > wp-config.php
+
+curl https://raw.githubusercontent.com/anto2oo/ateros-wordpress/master/ateros-config.php > ateros-config.php
 
 cd wp-content/plugins || exit
 
