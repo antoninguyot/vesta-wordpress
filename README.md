@@ -3,10 +3,7 @@
 ### About
 These files are used to setup and configure a wordpress installation everytime a new website is create through Vesta with these templates.
 
-The script installs Wordpress, and the following plugins :
-
-- Woocommerce
-- JustFreeThemes Assistant
+The script installs Wordpress and Woocommerce, and automatically applies the Ateros Textile configuration file to Wordpress.
 
 ### Installation
 
