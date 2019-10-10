@@ -17,10 +17,6 @@ if [ ! -f "$WP_FILES"/woocommerce.zip ]; then
 	wget -O "$WP_FILES"/woocommerce.zip https://github.com/woocommerce/woocommerce/archive/3.7.1.zip
 fi
 
-if [ ! -f "$WP_FILES"/assistant.zip ]; then
-	wget -O "$WP_FILES"/assistant.zip https://s3.amazonaws.com/justfreethemes/utils/jft-assitant-plugin/latest/jft-assitant-plugin.zip
-fi
-
 cp "$WP_FILES"/wordpress.zip "$WP_PATH/" || exit 1
 
 cd "$WP_PATH" || exit 1
@@ -56,9 +52,6 @@ curl https://raw.githubusercontent.com/anto2oo/ateros-wordpress/master/ateros-co
 cd wp-content/plugins || exit
 
 cp -f "$WP_FILES"/woocommerce.zip . || exit 1
-cp -f "$WP_FILES"/assistant.zip . || exit 1
 
 unzip -q woocommerce.zip
 rm -f woocommerce.zip
-unzip -q assistant.zip
-rm -f assistant.zip
